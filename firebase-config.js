@@ -1,12 +1,12 @@
 // Replace with your Firebase project config from Firebase Console
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
+  apiKey: "AIzaSyCKB39SXsY0DzOCeow9wILTiGzbE-PFYhw",
+  authDomain: "ycbalingasag-837b1.firebaseapp.com",
   projectId: "
 ycbalingasag-837b1",
-  storageBucket: "https://ycbalingasag-837b1-default-rtdb.firebaseio.com",
+  storageBucket: "ycbalingasag-837b1.firebasestorage.app",
   messagingSenderId: "194612719406",
-  appId: "YOUR_APP_ID"
+  appId: "1:194612719406:web:7087557a685822426414bf"
 };
 
 firebase.initializeApp(firebaseConfig);
