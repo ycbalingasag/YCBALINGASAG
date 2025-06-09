@@ -1,3 +1,6 @@
+import { auth, db, storage } from "./firebase-config.js";
+
+// DOM Elements
 const loginSection = document.getElementById("login-section");
 const adminSection = document.getElementById("admin-section");
 const loginBtn = document.getElementById("login-btn");
@@ -43,55 +46,45 @@ uploadBtn.addEventListener("click", () => {
     return;
   }
 
-  const storageRef = storage.ref(`gallery/${Date.now()}_${file.name}`);
-  storageRef.put(file).then(() => {
-    storageRef.getDownloadURL().then((url) => {
-      db.collection("gallery").add({ url }).then(() => {
-        alert("Upload successful");
-        fileInput.value = "";
-        loadGallery();
-      });
-    });
+  const fileRef = ref(storage, `gallery/${Date.now()}_${file.name}`);
+  uploadBytes(fileRef, file).then((snapshot) => {
+    return getDownloadURL(fileRef);
+  }).then((url) => {
+    return addDoc(collection(db, "gallery"), { url });
+  }).then(() => {
+    alert("Upload successful");
+    fileInput.value = "";
+    loadGallery();
   }).catch((error) => alert("Upload failed: " + error.message));
 });
 
-// Load gallery for admin (with delete)
+// Load gallery
 function loadGallery() {
   galleryDiv.innerHTML = "Loading...";
-  db.collection("gallery").get().then((snapshot) => {
+  getDocs(collection(db, "gallery")).then((snapshot) => {
     galleryDiv.innerHTML = "";
-    snapshot.forEach((doc) => {
-      const data = doc.data();
+    snapshot.forEach((docSnap) => {
+      const data = docSnap.data();
       const card = document.createElement("div");
       card.classList.add("gallery-card");
-      card.style.position = "relative";
 
       const img = document.createElement("img");
       img.src = data.url;
-      img.alt = "Gallery Image";
+      img.alt = "Image";
 
-      const delBtn = document.createElement("button");
-      delBtn.textContent = "Delete";
-      delBtn.className = "button red";
-      delBtn.style.position = "absolute";
-      delBtn.style.bottom = "8px";
-      delBtn.style.left = "8px";
-      delBtn.style.fontSize = "0.8rem";
-      delBtn.style.padding = "0.3rem 0.6rem";
-
-      delBtn.onclick = () => {
-        if (confirm("Are you sure you want to delete this image?")) {
-          db.collection("gallery").doc(doc.id).delete().then(() => {
-            // Also delete from storage
-            const fileRef = storage.refFromURL(data.url);
-            fileRef.delete();
+      const btn = document.createElement("button");
+      btn.textContent = "Delete";
+      btn.className = "button red";
+      btn.onclick = () => {
+        if (confirm("Are you sure?")) {
+          deleteDoc(doc(db, "gallery", docSnap.id)).then(() => {
             loadGallery();
-          }).catch((error) => alert("Delete failed: " + error.message));
+          });
         }
       };
 
       card.appendChild(img);
-      card.appendChild(delBtn);
+      card.appendChild(btn);
       galleryDiv.appendChild(card);
     });
   });
