@@ -4,7 +4,7 @@ const firebaseConfig = {
   authDomain: "ycbalingasag-837b1.firebaseapp.com",
   projectId: "
 ycbalingasag-837b1",
-  storageBucket: "ycbalingasag-837b1.firebasestorage.app",
+  storageBucket: "ycbalingasag-837b1.firebasestorage.appspot.com",
   messagingSenderId: "194612719406",
   appId: "1:194612719406:web:7087557a685822426414bf"
 };
