@@ -2,9 +2,10 @@
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  projectId: "
+ycbalingasag-837b1",
+  storageBucket: "https://ycbalingasag-837b1-default-rtdb.firebaseio.com",
+  messagingSenderId: "194612719406",
   appId: "YOUR_APP_ID"
 };
 
