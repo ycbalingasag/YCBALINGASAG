@@ -1,0 +1,108 @@
+/* Global styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+nav {
+  background-color: #1565c0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  align-items: center;
+}
+
+.nav-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.nav-links a {
+  color: white;
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  text-decoration: underline;
+  color: #bbdefb;
+}
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgb(0 0 0 / 0.1);
+}
+
+h1 {
+  color: #0d47a1;
+}
+
+/* Buttons */
+.button {
+  background-color: #1565c0;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #0d47a1;
+}
+
+.button.red {
+  background-color: #d32f2f;
+}
+
+.button.red:hover {
+  background-color: #b71c1c;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Inputs */
+input[type="email"],
+input[type="password"],
+input[type="file"] {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #90caf9;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 300px;
+  font-size: 1rem;
+}
